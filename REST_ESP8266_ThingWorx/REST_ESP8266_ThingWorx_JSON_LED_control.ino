@@ -5,6 +5,9 @@ http://academic.cloud.thingworx.com/Thingworx/Things/ESP8266_REST_yours/Services
 
 http://academic.cloud.thingworx.com/Thingworx/Things/ESP8266_REST_yours/Properties/YourCtrl?method=get&appKey=your_app_key (Content-Type: application/json)
 
+This is based on the following link.
+https://www.thingworx.com/ecosystem/academic-program/iot-projects/weather-app-arduino-uno/
+
 This sketch reads four (two simulated) sensor values and sends to a Thing on ThingWorx.
 It also gets a value from Mashup to control a device such as LED.
 
