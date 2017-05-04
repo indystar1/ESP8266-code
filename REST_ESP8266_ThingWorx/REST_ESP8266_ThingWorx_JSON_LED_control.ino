@@ -29,7 +29,7 @@ https://github.com/interactive-matter/aJson/
 
 created 4/3/2016
 modified 3/23/2017
-by Indystar Lee
+by Indy Star
 
 This code was based on
 Arduino to Thingworx Ethernet Web Client using Ethernet Shield
