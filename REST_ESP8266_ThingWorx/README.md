@@ -2,9 +2,11 @@ Arduino to Thingworx REST POST and GET using ESP8266
 ====================================================
 
 Advanced REST-API test url for posting four properties:
+```
 http://academic.cloud.thingworx.com/Thingworx/Things/ESP8266_REST_yours/Services/setTempAndHumid?appKey=your_app_key&method=post&Temp=53.70&Humid=34.50&Bool=true&Analog=123.45 (Content-Type: application/json)
+```
 
-Advanced REST-API test url for posting four properties:
+Advanced REST-API test url for getting a control command:
 ```
 http://academic.cloud.thingworx.com/Thingworx/Things/ESP8266_REST_yours/Properties/YourCtrl?method=get&appKey=your_app_key (Content-Type: application/json)
 ```
@@ -15,7 +17,7 @@ The sketch reads four (two simulated) sensor values and sends to a Thing on Thin
 
 It also gets a value from Mashup to control a device such as LED.
 
-On the Thingworx side make sure your thingName[], your serviceName[] and your server[] match exactly.
+On the Thingworx side, make sure your thingName[], your serviceName[] and your server[] match exactly.
 
 Use your provided appKey that you receive when you set up your Thing.
 
