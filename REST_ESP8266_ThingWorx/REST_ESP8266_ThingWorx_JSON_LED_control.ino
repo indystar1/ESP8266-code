@@ -3,7 +3,7 @@ Arduino to Thingworx REST POST and GET using ESP8266
 
 http://academic.cloud.thingworx.com/Thingworx/Things/ESP8266_REST_yours/Services/setTempAndHumid?appKey=your_app_key&method=post&Temp=53.70&Humid=34.50&Bool=true&Analog=123.45 (Content-Type: application/json)
 
-http://academic.cloud.thingworx.com/Thingworx/Things/ESP8266_REST_yours/Properties/YourCtrl?method=get&appKey=your_app_key (Content-Type: application/json)
+http://academic.cloud.thingworx.com/Thingworx/Things/ESP8266_REST_yours/Properties/MyControl?method=get&appKey=your_app_key (Content-Type: application/json)
 
 This is based on the following link.
 https://www.thingworx.com/ecosystem/academic-program/iot-projects/weather-app-arduino-uno/
@@ -81,7 +81,7 @@ float newTempValue = 10.0;    // simulated value
 float newHumidValue = 10.0;   // simulated value
 bool  newDigitalValue;        // Real input pin
 int   newAnalogValue = 0;     // connect an analog sensor (such as CDS photoresistor)
-char  propertyB1[] = "YourCtrl"; // this is the property name used to control a device such as an LED
+char  propertyB1[] = "MyControl"; // this is the property name used to control a device such as an LED
                                  // Mashup will need a control button or checkbox for this
                                  // It will be retrieved by GET method
 
@@ -279,13 +279,13 @@ void loop() {
             Serial.println("Parsing...");
             Serial.println(json_buffer);
 
-            int YourCtrl = parseJson(json_buffer); // Parse and get my value back
+            int MyControl = parseJson(json_buffer); // Parse and get my value back
 
-            if (YourCtrl == 1) {
+            if (MyControl == 1) {
               Serial.println("IndyControl is on");
               digitalWrite(PROGAMMING_LED, LOW);   // LED ON, negative logic
             }
-            else if (YourCtrl == 2) {
+            else if (MyControl == 2) {
               Serial.println("IndyControl is off");
               digitalWrite(PROGAMMING_LED, HIGH);  // LED OFF, negative logic
             }
@@ -314,13 +314,13 @@ int parseJson(char *jsonString)
 
         if (rows != NULL) {
             Serial.println("L2 parsed successfully (rows)" );
-            aJsonObject* YourCtrl = aJson.getObjectItem(rows, "YourCtrl"); 
+            aJsonObject* MyControl = aJson.getObjectItem(rows, "MyControl"); 
             //rows->name
 
-            if (YourCtrl != NULL) {
-                Serial.println("L3 parsed successfully (YourCtrl)" );
-                if (YourCtrl->valuebool == true) value = 1; 
-                else if (YourCtrl->valuebool == false) value = 2;
+            if (MyControl != NULL) {
+                Serial.println("L3 parsed successfully (MyControl)" );
+                if (MyControl->valuebool == true) value = 1; 
+                else if (MyControl->valuebool == false) value = 2;
                 else value = 0;
             }
         }
