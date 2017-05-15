@@ -98,7 +98,7 @@ unsigned long time_post_interval = 0;
 
 #define PROGAMMING_LED     2   // A tiny blue LED next to the WiFi antenna, connected to GPIO#2 (LOW-->On)
 #define SCK_LED     14   // An LED connected to SCK/GPIO#14 (I used WeMos D1)
-#define SW1Status   16   // a switch is connected to, Arduino PIN number
+#define SW1Status   15   // a switch is connected; for WeMos D1, a pull-down resistor is connected
 #define ANALOG_PIN  A0
 
 boolean TW_connected = false;
@@ -145,7 +145,7 @@ void setup() {
     return;
   }
 
-  pinMode(SW1Status, INPUT_PULLUP);
+  pinMode(SW1Status, INPUT);
   pinMode(PROGAMMING_LED, OUTPUT);
   pinMode(SCK_LED, OUTPUT);           // Pilot LED, and turn it off
   digitalWrite(PROGAMMING_LED, HIGH); // LED off, negative logic

@@ -23,13 +23,13 @@ char ssid[] = "your_ssid";
 char password[] = "yours";
 
 // Digital Pin
-#define SW_PIN            16   // GPIO Pin with Switch connected
+#define SW_PIN            15   // GPIO Pin with Switch connected; for WeMos D1, a 10K pull-down is connected
 #define PROGAMMING_LED     2   // A tiny blue LED next to the WiFi antenna, connected to GPIO#2 (LOW-->On)
 #define SCK_LED           14   // An LED connected to SCK/GPIO#14 (for WeMos D1)
 
 void setup() {
   // initialize digital pin 2 as an output.
-  pinMode(SW_PIN, INPUT_PULLUP);
+  pinMode(SW_PIN, INPUT);
   pinMode(SCK_LED, OUTPUT);
   pinMode(PROGAMMING_LED, OUTPUT);
 
