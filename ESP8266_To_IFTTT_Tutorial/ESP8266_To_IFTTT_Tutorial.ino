@@ -8,19 +8,18 @@
 // define gpio pins here:
 #define NUMBER_OF_SENSORS 2 // THIS MUST MATCH THE NUMBER OF SENSORS IN THE SENSOR ARRAY / NO MORE THAN 3
 
-#define FRONT_DOOR_PIN  15  // GPIO5
-#define GARAGE_DOOR_PIN 4 // GPIO4
+#define FRONT_DOOR_PIN  15  // GPIO15
+#define GARAGE_DOOR_PIN 4   // GPIO4
 // pin for heatbeat LED
-#define HEARTBEAT_PIN 14  //GPIO14
+#define HEARTBEAT_PIN   14  // GPIO14
 
-#define PROGAMMING_LED     2   // A tiny blue LED next to the WiFi antenna, connected to GPIO#2 (LOW-->On)
-#define SCK_LED           14   // An LED connected to SCK/GPIO#14 (for WeMos D1)
-
+#define PROGAMMING_LED  2   // A tiny blue LED next to the WiFi antenna, connected to GPIO#2 (LOW-->On)
+#define SCK_LED         14  // An LED connected to SCK/GPIO#14 (for WeMos D1)
 
 // Define program constants
 
-const char* myKey = ""; // your maker key here
-const char* ssid = ""; // your router ssid here
+const char* myKey = ""; // your maker key here; the string after https://maker.ifttt.com/use/
+const char* ssid = "";  // your router ssid here
 const char* password = ""; // your router password here
 
 // define program values
