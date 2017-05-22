@@ -7,7 +7,7 @@ It connects to AT&T M2X platform using Device ID, Stream ID, and your PRIMARY AP
 
 It sends simulated Celcius temperature values to M2X.
 
-By using a GET RESTful call to ATT M2X server, it also polls "control" value of another stream, which is used to turn on or off of an LED on board.
+By using a GET RESTful request to ATT M2X server, it also polls _control_ value of another stream, which is used to turn on or off of an LED on board.
 
 Because M2X returns a JSON packet, the sketch uses [aJSON library](https://github.com/interactive-matter/aJson) to extract the value of _control_.
 
