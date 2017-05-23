@@ -40,7 +40,7 @@ EAC Product Development Solutions
 
 #include <SPI.h>
 #include <ESP8266WiFi.h>
-#include "aJSON.h"
+#include "aJSON.h>
 #include "stringbuffer.h"
 
 #define one_second      1000
@@ -108,7 +108,7 @@ void setup() {
   timeout = 0;
   while (!Serial) {
     delay(200);
-	timeout++
+	timeout++;
 	if (timeout > 25) break;  // wait up to 5 seconds
   }
 
