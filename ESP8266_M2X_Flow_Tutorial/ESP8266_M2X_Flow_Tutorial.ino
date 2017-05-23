@@ -3,8 +3,8 @@
 #define ESP8266_PLATFORM
 #include "M2XStreamClient.h"
 
-char ssid[] = "yourssid"; //  your network SSID (name)
-char pass[] = "yourpass"; // your network password (use for WPA, or use as key for WEP)
+char wifissid[] = "your_wifi_ssid"; //  your network SSID (name)
+char wifipass[] = "your_wifi_pass"; // your network password (use for WPA, or use as key for WEP)
 int keyIndex = 0;         // your network key Index number (needed only for WEP)
 
 int status = WL_IDLE_STATUS;

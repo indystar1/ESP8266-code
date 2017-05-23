@@ -19,8 +19,8 @@
 // Define program constants
 
 const char* myKey = ""; // your maker key here; the string after https://maker.ifttt.com/use/
-const char* ssid = "";  // your router ssid here
-const char* password = ""; // your router password here
+const char* wifissid = "";  // your wifi ssid here
+const char* password = ""; // your router password here;  // if no SSL, just leave this blank string
 
 // define program values
 int sensors[NUMBER_OF_SENSORS] = {FRONT_DOOR_PIN, GARAGE_DOOR_PIN}; // place your defined sensors in the curly braces

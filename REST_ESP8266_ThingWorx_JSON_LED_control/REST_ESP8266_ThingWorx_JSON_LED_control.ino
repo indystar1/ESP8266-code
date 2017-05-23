@@ -58,8 +58,8 @@ EAC Product Development Solutions
 
 #define json_buffer_size 512
 
-const char* ssid     = "ssid";
-const char* password = "pass";
+const char* wifissid = "wifissid";
+const char* password = "wifipass"; // if no SSL, just leave this blank string
 const char* server = "academic.cloud.thingworx.com";
 
 WiFiClient wifiClient;

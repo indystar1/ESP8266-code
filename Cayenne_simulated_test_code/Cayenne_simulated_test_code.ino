@@ -19,8 +19,8 @@
 // Cayenne authentication token. This should be obtained from the Cayenne Dashboard.
 char token[] = "your_token";
 // Your network name and password.
-char ssid[] = "your_ssid";
-char password[] = "yours";
+char wifissid[] = "your_wifi_ssid";
+char password[] = "your_wifi_pass"; // if no SSL, just leave this blank string
 
 // Digital Pin
 #define SW_PIN            15   // GPIO Pin with Switch connected; for WeMos D1, a 10K pull-down is connected

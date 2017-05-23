@@ -14,8 +14,8 @@
 #define one_hour     3600000
 #define two_hours    7200000
 
-const char* ssid     = "yourssid";
-const char* password = "yourpass";
+const char* wifissid = "your_wifi_ssid";
+const char* password = "your_wifi_pass"; // if no SSL, just leave this blank string
 
 const char* topic = "IoTLab1/NodeTest";
 
