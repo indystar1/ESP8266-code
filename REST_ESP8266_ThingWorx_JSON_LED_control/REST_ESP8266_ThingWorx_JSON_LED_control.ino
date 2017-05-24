@@ -282,11 +282,11 @@ void loop() {
             int MyControl = parseJson(json_buffer); // Parse and get my value back
 
             if (MyControl == 1) {
-              Serial.println("IndyControl is on");
+              Serial.println("MyControl is on");
               digitalWrite(PROGAMMING_LED, LOW);   // LED ON, negative logic
             }
             else if (MyControl == 2) {
-              Serial.println("IndyControl is off");
+              Serial.println("MyControl is off");
               digitalWrite(PROGAMMING_LED, HIGH);  // LED OFF, negative logic
             }
             else Serial.println("There was some problem in parsing the JSON");
