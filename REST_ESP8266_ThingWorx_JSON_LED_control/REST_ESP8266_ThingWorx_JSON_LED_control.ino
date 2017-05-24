@@ -176,8 +176,8 @@ void loop() {
       }
   }
 
-  // Post sensor values every 25 seconds
-  if ( (millis() > (time_post_interval + twentyfive_seconds)) or (power_on == true) ) {
+  // Post sensor values every 10 seconds
+  if ( (millis() > (time_post_interval + ten_seconds)) or (power_on == true) ) {
       time_post_interval = millis();
 
       Serial.print("Post_iter_count is ");
