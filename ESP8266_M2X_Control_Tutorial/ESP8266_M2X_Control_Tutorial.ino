@@ -28,8 +28,8 @@ int status = WL_IDLE_STATUS;
 bool toggle_LED = false;
 
 char deviceId[] = ""; // Device you want to push to
-char updateStreamName[] = "esp1"; // Stream you want to push to
-char controlStreamName[] = "control"; // Stream you want to push to
+char updateStreamName[] = "esp1"; // Stream you want to push to ATT M2X (simulated temperature)
+char controlStreamName[] = "control"; // Stream you want to retrieve the control value
 char m2xKey[] = ""; // Your M2X access key (Your PRIMARY API KEY)
 char m2xServer[] = "api-m2x.att.com";
 char content_type_app_json[] = "Content-Type: application/json";
