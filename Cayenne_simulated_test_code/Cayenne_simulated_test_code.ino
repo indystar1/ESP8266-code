@@ -22,8 +22,8 @@ char token[] = "your_token";
 char wifissid[] = "your_wifi_ssid";
 char password[] = "your_wifi_pass"; // if no SSL, just leave this blank string
 
-// Digital Pin
-#define SW_PIN            15   // GPIO Pin with Switch connected; for WeMos D1, a 10K pull-down is connected
+// Digital Pin  for WeMos D1
+#define SW_PIN            12   // GPIO Pin, connect a switch (see tutorial)
 #define PROGAMMING_LED     2   // A tiny blue LED next to the WiFi antenna, connected to GPIO#2 (LOW-->On)
 #define SCK_LED           14   // An LED connected to SCK/GPIO#14 (for WeMos D1)
 
@@ -35,7 +35,7 @@ void setup() {
 
   Serial.begin(115200);
   Serial.println("Cayenne simulated test code!");
-  Cayenne.begin(token, ssid, password);
+  Cayenne.begin(token, wifissid, password);
   
   Cayenne.run();
 

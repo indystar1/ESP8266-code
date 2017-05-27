@@ -19,8 +19,8 @@
 #include <jsonlite.h>
 #include <M2XStreamClient.h>
 
-char wifissid[] = "your_wifi_ssid"; // your network SSID (name)
-char wifipass[] = "your_wifi_pass"; // your network password (use for WPA, or use as key for WEP)
+char wifissid[] = "your_wifi_ssid"; // your WiFi SSID (name)
+char wifipass[] = "your_wifi_pass"; // your WiFi password (use for WPA, or use as key for WEP)
                                     // if no SSL, just leave this blank string
 //int keyIndex = 0;         // your network key Index number (needed only for WEP)
 
@@ -56,16 +56,15 @@ void setup() {
   pinMode(SCK_LED, OUTPUT);         // pilot LED
   pinMode(PROGAMMING_LED, OUTPUT);  // M2X controlled LED and alert
 
-  while (status != WL_CONNECTED) {
-     Serial.print("Attempting to connect to SSID: ");
-     Serial.println(ssid);
-     // Connect to WPA/WPA2 network. Change this line if using open or WEP network:
-     status = WiFi.begin(ssid, pass);
-
-     // wait 5 seconds for connection:
-     delay(5000);
+  // Connecting to WPA/WPA2 network. Change this line if using open or WEP network:
+  WiFi.begin(wifissid, wifipass);
+  
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
   }
-  Serial.println("Connected to wifi");
+  Serial.println("");
+
   printWifiStatus();
 }
 
@@ -178,13 +177,12 @@ void loop() {
   }
 }
 
-
 void printWifiStatus() {
   // print the SSID of the network you're attached to:
   Serial.print("SSID: ");
   Serial.println(WiFi.SSID());
 
-  // print your WiFi shield's IP address:
+  // print your WiFi's IP address:
   IPAddress ip = WiFi.localIP();
   Serial.print("IP Address: ");
   Serial.println(ip);

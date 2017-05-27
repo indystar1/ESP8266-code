@@ -3,8 +3,8 @@
 #define ESP8266_PLATFORM
 #include "M2XStreamClient.h"
 
-char wifissid[] = "your_wifi_ssid"; //  your network SSID (name)
-char wifipass[] = "your_wifi_pass"; // your network password (use for WPA, or use as key for WEP)
+char wifissid[] = "your_wifi_ssid"; //  your WiFi SSID (name)
+char wifipass[] = "your_wifi_pass"; // your WiFi password (use for WPA, or use as key for WEP)
 int keyIndex = 0;         // your network key Index number (needed only for WEP)
 
 int status = WL_IDLE_STATUS;
@@ -15,8 +15,8 @@ char streamName[] = ""; // the stream (not device) name you want to push this da
 char m2xKey[] = ""; // Your PRIMARY API KEY
 
 // Arduino PIN numbers
-#define temperaturePin   0
-#define SCK_LED          14   // An LED connected to SCK/GPIO#14 (for WeMos D1)
+#define temperaturePin   16 // for real Temperature sensor
+#define SCK_LED          14 // An LED connected to SCK/GPIO#14 (for WeMos D1)
 
 WiFiClient client;
 M2XStreamClient m2xClient(&client, m2xKey);
@@ -27,16 +27,15 @@ void setup() {
   pinMode(temperaturePin, INPUT);
   pinMode(SCK_LED, OUTPUT);
 
-  while (status != WL_CONNECTED) {
-    Serial.print("Attempting to connect to SSID: ");
-    Serial.println(ssid);
-    // Connect to WPA/WPA2 network. Change this line if using open or WEP network:
-    status = WiFi.begin(ssid, pass);
-
-    // wait 10 seconds for connection:
-    delay(10000);
+  // Connecting to WPA/WPA2 network. Change this line if using open or WEP network:
+  WiFi.begin(wifissid, wifipass);
+  
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
   }
-  Serial.println("Connected to wifi");
+  Serial.println("");
+
   printWifiStatus();
 }
 
@@ -72,7 +71,6 @@ void loop() {
   delay(10000);  // update every 10 seconds
 }
 
-
 void printWifiStatus() {
   // print the SSID of the network you're attached to:
   Serial.print("SSID: ");
@@ -89,4 +87,3 @@ void printWifiStatus() {
   Serial.print(rssi);
   Serial.println(" dBm");
 }
-

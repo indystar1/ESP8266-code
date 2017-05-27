@@ -8,7 +8,7 @@
 // define gpio pins here:
 #define NUMBER_OF_SENSORS 2 // THIS MUST MATCH THE NUMBER OF SENSORS IN THE SENSOR ARRAY / NO MORE THAN 3
 
-#define FRONT_DOOR_PIN  15  // GPIO15
+#define FRONT_DOOR_PIN  12  // GPIO12
 #define GARAGE_DOOR_PIN 4   // GPIO4
 // pin for heatbeat LED
 #define HEARTBEAT_PIN   14  // GPIO14
@@ -20,7 +20,7 @@
 
 const char* myKey = ""; // your maker key here; the string after https://maker.ifttt.com/use/
 const char* wifissid = "";  // your wifi ssid here
-const char* password = ""; // your router password here;  // if no SSL, just leave this blank string
+const char* wifipass = ""; // your router password here;  // if no SSL, just leave this blank string
 
 // define program values
 int sensors[NUMBER_OF_SENSORS] = {FRONT_DOOR_PIN, GARAGE_DOOR_PIN}; // place your defined sensors in the curly braces
@@ -84,9 +84,9 @@ bool ConnectWifi()
   debugln();
   debugln();
   debug("Connecting to ");
-  debugln(ssid);
+  debugln(wifissid);
   unsigned long startTime = millis();
-  WiFi.begin(ssid, password);
+  WiFi.begin(wifissid, wifipass);
 
   while (WiFi.status() != WL_CONNECTED && startTime + 30 * 1000 >= millis()) {
     delay(500);

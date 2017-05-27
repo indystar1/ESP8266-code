@@ -15,7 +15,7 @@
 #define two_hours    7200000
 
 const char* wifissid = "your_wifi_ssid";
-const char* password = "your_wifi_pass"; // if no SSL, just leave this blank string
+const char* wifipass = "your_wifi_pass"; // if no SSL, just leave this blank string
 
 const char* topic = "IoTLab1/NodeTest";
 
@@ -34,7 +34,7 @@ byte ten_min_count = 0;
 bool any_fail_flag = false;
 
 
-#define SW1Status         15   // a switch is connected; for WeMos D1, a pull-down resistor is connected
+#define SW1Status         12   // a switch is connected; for WeMos D1, a pull-down resistor is connected
 #define PROGAMMING_LED     2   // A tiny blue LED next to the WiFi antenna, connected to GPIO#2 (LOW-->On)
 #define SCK_LED           14   // An LED connected to SCK/GPIO#14 (for WeMos D1)
 #define ANALOG_PIN        A0
@@ -68,19 +68,18 @@ void setup()
   Serial.println();
   Serial.println();
   Serial.print("Connecting to ");
-  Serial.println(ssid);
+  Serial.println(wifissid);
 
-  WiFi.begin(ssid, password);
-
+  // Connecting to WPA/WPA2 network. Change this line if using open or WEP network:
+  WiFi.begin(wifissid, wifipass);
+  
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
-
   Serial.println("");
-  Serial.println("WiFi connected");
-  Serial.print("IP address: ");
-  Serial.println(WiFi.localIP());
+
+  printWifiStatus();
 
   digitalWrite(PROGAMMING_LED, HIGH); // Warning LED off
   time_callback_sense = millis();
@@ -274,11 +273,28 @@ void loop() {
   else power_on = false;
 }
 
+void printWifiStatus() {
+  // print the SSID of the network you're attached to:
+  Serial.print("SSID: ");
+  Serial.println(WiFi.SSID());
+
+  // print your WiFi's IP address:
+  IPAddress ip = WiFi.localIP();
+  Serial.print("IP Address: ");
+  Serial.println(ip);
+
+  // print the received signal strength:
+  long rssi = WiFi.RSSI();
+  Serial.print("signal strength (RSSI):");
+  Serial.print(rssi);
+  Serial.println(" dBm");
+}
+
 void reconnect_to_WiFi() {
   Serial.print("Re-connecting WiFi to ");
-  Serial.println(ssid);
+  Serial.println(wifissid);
 
-  WiFi.begin(ssid, password);
+  WiFi.begin(wifissid, wifipass);
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
