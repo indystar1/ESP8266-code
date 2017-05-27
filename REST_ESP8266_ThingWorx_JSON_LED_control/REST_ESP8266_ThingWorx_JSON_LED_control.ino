@@ -17,10 +17,11 @@ Use your provided appKey that you receive when you set up your Thing.
 Create a service in your Thing or ThingShape and create inputs that will match the variable names you use
 in your Arduino code.  In the JavaScript window of Services, type something similar to the following:
 
-me.Temperature = parseFloat(Temp);
-me.Humidity = parseFloat(Humid);
-me.BoolStatus = parseBoolean(Bool);
-me.AnalogValue = parseFloat(Analog);
+var isTrueSet = (Bool.toLowerCase() === 'true');
+me.Temperature = parseFloat(Temp) ;
+me.Humidity = parseFloat(Humid) ;
+me.BoolStatus = isTrueSet ;
+me.AnalogValue = parseFloat(Analog) ;
 
 Everything is case sensitive.
 
@@ -29,6 +30,7 @@ https://github.com/interactive-matter/aJson/
 
 created 4/3/2016
 modified 3/23/2017
+modified 5/27/2017
 by Indy Star
 
 This code was based on
@@ -59,7 +61,7 @@ EAC Product Development Solutions
 #define json_buffer_size 512
 
 const char* wifissid = "wifissid";
-const char* password = "wifipass"; // if no SSL, just leave this blank string
+const char* wifipass = "wifipassword"; // if no SSL, just leave this blank string
 const char* server = "academic.cloud.thingworx.com";
 
 WiFiClient wifiClient;
@@ -96,10 +98,10 @@ unsigned long time_alive_interval = 0;
 unsigned long time_get_interval = 0;
 unsigned long time_post_interval = 0;
 
-#define PROGAMMING_LED     2   // A tiny blue LED next to the WiFi antenna, connected to GPIO#2 (LOW-->On)
-#define SCK_LED     14   // An LED connected to SCK/GPIO#14 (I used WeMos D1)
-#define SW1Status   15   // a switch is connected; for WeMos D1, a pull-down resistor is connected
-#define ANALOG_PIN  A0
+#define PROGAMMING_LED 2 // A tiny blue LED next to the WiFi antenna, connected to GPIO#2 (LOW-->On)
+#define SCK_LED     14 // An LED connected to SCK/GPIO#14 (I used WeMos D1)
+#define SW1Status   12 // a switch is connected; High if on, Low if off
+#define ANALOG_PIN  A0 // for luminosity
 
 boolean TW_connected = false;
 
@@ -115,21 +117,19 @@ void setup() {
   Serial.println();
   Serial.println();
   Serial.print("Connecting to ");
-  Serial.println(ssid);
+  Serial.println(wifissid);
 
-  WiFi.begin(ssid, password); // connecting to WiFi
+  // Connecting to WPA/WPA2 network. Change this line if using open or WEP network:
+  WiFi.begin(wifissid, wifipass);
   
   while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
+    delay(500);
     Serial.print(".");
   }
-
   Serial.println("");
-  Serial.println("WiFi connected");  
-  Serial.print("IP address: ");
-  Serial.println(WiFi.localIP());
-  Serial.println();
-  
+ 
+  printWifiStatus();
+
   // Now connect to TW server. If you get a connection, report back via serial:
   if (wifiClient.connect(server, 80)) {
     Serial.print("connected to ");
@@ -426,4 +426,21 @@ void getValues(void)
     Serial.println(server);
     Serial.println(content_type_text_json);
     Serial.println();
+}
+
+void printWifiStatus() {
+  // print the SSID of the network you're attached to:
+  Serial.print("SSID: ");
+  Serial.println(WiFi.SSID());
+
+  // print your WiFi's IP address:
+  IPAddress ip = WiFi.localIP();
+  Serial.print("IP Address: ");
+  Serial.println(ip);
+
+  // print the received signal strength:
+  long rssi = WiFi.RSSI();
+  Serial.print("signal strength (RSSI):");
+  Serial.print(rssi);
+  Serial.println(" dBm");
 }
